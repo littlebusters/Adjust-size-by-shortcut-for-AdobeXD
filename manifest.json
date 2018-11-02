@@ -1,0 +1,97 @@
+{
+   "name": "Adjust Size by Shortcut",
+   "id": "669f929b",
+   "version":"1.0.0",
+   "description":"Adjust object size by Keyboard Shortcut.",
+   "icons":[
+      {
+         "width":96,
+         "height":96,
+         "path":"images/adjust-size-by-shortcut-icon.png"
+      }
+   ],
+   "host":{
+      "app":"XD",
+      "minVersion":"13.0.0"
+   },
+   "uiEntryPoints":[
+      {
+         "type":"menu",
+         "label":"Adjust Size by Shortcut",
+         "menuItems": [
+            {
+               "type":"menu",
+               "label":"Shrink Width",
+               "commandId": "ShrinkW",
+               "shortcut": {
+                  "mac": "Cmd+4",
+                  "win": "Ctrl+4"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Shrink Height",
+               "commandId": "ShrinkH",
+               "shortcut": {
+                  "mac": "Cmd+8",
+                  "win": "Ctrl+8"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Extend Width",
+               "commandId": "ExtendW",
+               "shortcut": {
+                  "mac": "Cmd+6",
+                  "win": "Ctrl+6"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Extend Height",
+               "commandId": "ExtendH",
+               "shortcut": {
+                  "mac": "Cmd+5",
+                  "win": "Ctrl+5"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Shrink Greatly Width",
+               "commandId": "ShrinkGW",
+               "shortcut": {
+                  "mac": "Cmd+Shift+4",
+                  "win": "Ctrl+Shift+4"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Shrink Greatly Height",
+               "commandId": "ShrinkGH",
+               "shortcut": {
+                  "mac": "Cmd+Shift+8",
+                  "win": "Ctrl+Shift+8"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Extend Greatly Width",
+               "commandId": "ExtendGW",
+               "shortcut": {
+                  "mac": "Cmd+Shift+6",
+                  "win": "Ctrl+Shift+6"
+               }
+            },
+            {
+               "type":"menu",
+               "label":"Extend Greatly Height",
+               "commandId": "ExtendGH",
+               "shortcut": {
+                  "mac": "Cmd+Shift+5",
+                  "win": "Ctrl+Shift+5"
+               }
+            }
+         ]
+      }
+   ]
+}
