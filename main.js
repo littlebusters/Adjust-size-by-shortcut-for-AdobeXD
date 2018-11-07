@@ -1,3 +1,5 @@
+const {createAlert} = require('./modules/helper');
+
 function shrinkWidth(selection) {
     objectResize(selection.items, 'width', -1);
 }
@@ -26,6 +28,11 @@ function extendGHeight(selection) {
 
 // main
 function objectResize(sel, side, shift) {
+    if (0 === sel.length) {
+        const dialog = createAlert('title', 'message');
+		dialog.showModal();
+        return false;
+    }
 
     if('width' === side) {
         sel.forEach(function (obj) {
