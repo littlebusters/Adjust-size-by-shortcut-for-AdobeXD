@@ -7,6 +7,12 @@ This plugin for Adobe XD that adjust size of objects by Keyboard Shortcut for Ad
 
 ## Installation
 
+### on XD
+
+1. Open the Plugin panel from "Plugins > Discover Plugins...".
+2. Type "adjust size" on the search box.
+3. Click to "Install" if find the this plugin.
+
 ### manually
 
 1. Download the latest release.
@@ -28,6 +34,14 @@ e.g. Like a Sketch.app
 |Plugins->Adjust Size by Shortcut->Shrink Greatly Height|⌘ + shift + ↑|
 |Plugins->Adjust Size by Shortcut->Extend Greatly Width|⌘ + shift + →|
 |Plugins->Adjust Size by Shortcut->Extend Greatly Height|⌘ + shift + ↓|
+
+# Known Issues
+
+- It will not work properly when apply to rotated object.
+
+## Bug report
+
+Please send the report to Issues on Github.
 
 ## License
 
