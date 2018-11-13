@@ -26,14 +26,14 @@ e.g. Like a Sketch.app
 
 |Menu title|Shortcut|
 |----|---------|
-|Plugins->Adjust Size by Shortcut->Shrink Width|⌘ + ←|
-|Plugins->Adjust Size by Shortcut->Shrink Height|⌘ + ↑|
-|Plugins->Adjust Size by Shortcut->Extend Width|⌘ + →|
-|Plugins->Adjust Size by Shortcut->Extend Height|⌘ + ↓|
-|Plugins->Adjust Size by Shortcut->Shrink Greatly Width|⌘ + shift + ←|
-|Plugins->Adjust Size by Shortcut->Shrink Greatly Height|⌘ + shift + ↑|
-|Plugins->Adjust Size by Shortcut->Extend Greatly Width|⌘ + shift + →|
-|Plugins->Adjust Size by Shortcut->Extend Greatly Height|⌘ + shift + ↓|
+|Shrink Width|⌘ + ←|
+|Shrink Height|⌘ + ↑|
+|Extend Width|⌘ + →|
+|Extend Height|⌘ + ↓|
+|Shrink Greatly Width|⌘ + shift + ←|
+|Shrink Greatly Height|⌘ + shift + ↑|
+|Extend Greatly Width|⌘ + shift + →|
+|Extend Greatly Height|⌘ + shift + ↓|
 
 # Known Issues
 
