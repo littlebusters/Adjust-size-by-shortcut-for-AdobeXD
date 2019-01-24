@@ -1,7 +1,7 @@
 {
    "name": "Adjust Size by Shortcut",
    "id": "669f929b",
-   "version":"1.0.1",
+   "version":"1.1.1",
    "description":"Adjust object size by Keyboard Shortcut.",
    "icons":[
       {
@@ -89,6 +89,15 @@
                "shortcut": {
                   "mac": "Ctrl+Shift+5",
                   "win": "Ctrl+alt+Shift+5"
+               }
+            },
+            {
+               "type":"menu",
+               "label": "Nudge Setting...",
+               "commandId": "Settings",
+               "shortcut": {
+                  "mac": "Ctrl+Shift+q",
+                  "win": "Ctrl+alt+Shift+0"
                }
             }
          ]
