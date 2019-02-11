@@ -93,12 +93,8 @@
             },
             {
                "type":"menu",
-               "label": "Nudge Setting...",
-               "commandId": "Settings",
-               "shortcut": {
-                  "mac": "Ctrl+Shift+q",
-                  "win": "Ctrl+alt+Shift+0"
-               }
+               "label": "Nudge Size Setting...",
+               "commandId": "Settings"
             }
          ]
       }

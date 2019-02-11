@@ -1,7 +1,7 @@
 {
   "title": "オブジェクトが選択されていません",
   "message": "リサイズ可能なオブジェクトを選択して、プラグインを実行してください。",
-  "settingTitle": "Nudge setting",
-  "labelSmallNudge": "Small",
-  "labelBigNudge": "Big"
+  "settingTitle": "Resize nudge size",
+  "labelSmallNudge": "Normal",
+  "labelBigNudge": "Greatly"
 }

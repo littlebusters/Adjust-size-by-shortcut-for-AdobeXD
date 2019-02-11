@@ -4,6 +4,19 @@ const dom = sel => document.querySelector(sel);
 const {uiLabel} = require('./i18l');
 const pluginIcon = '../images/adjust-size-by-shortcut-icon.png';
 
+const getNudgeValue = async (size) => {
+	let nudgeValues = await readConfig();
+
+	switch (size) {
+		case 'small':
+			return nudgeValues.normal;
+		case 'big':
+			return nudgeValues.greatly;
+		default:
+			return nudgeValues.normal;
+	}
+}
+
 function createSettingDialog(defaultVal) {
 	document.body.innerHTML = `
 <style>
@@ -130,6 +143,25 @@ function createAlert(title, msg) {
 	return dialog;
 }
 
+async function openSettingDialog() {
+	const storedValue = await readConfig();
+	const dialog = createSettingDialog(storedValue);
+
+	try {
+		const result = await dialog.showModal();
+		if ('reasonCanceled' !== result) {
+			let config = {};
+			config.normal = (validateNum(result.smallNudge)) ? Math.abs(result.smallNudge - 0) : defaultVal.smallNudge;
+			config.greatly = (validateNum(result.bigNudge)) ? Math.abs(result.bigNudge - 0) : defaultVal.bigNudge;
+			await writeConfig(config);
+		} else {
+			console.log('Adjust size setting canceled.')
+		}
+	} catch(e) {
+		console.log(e);
+	}
+}
+
 async function readConfig() {
 	let entry = await openFile();
 
@@ -169,7 +201,7 @@ async function openFile() {
 
 	// Seek a config.json
 	for (let i = 0; i < entries.length; i++) {
-		console.log(entries[i].name);
+		// console.log(entries[i].name);
 		if (configFile === entries[i].name) {
 			return await entries[i];
 		}
@@ -187,9 +219,7 @@ function validateNum(val) {
 }
 
 module.exports = {
-	createSettingDialog,
-	createAlert,
-	readConfig,
-	writeConfig,
-	validateNum
+	getNudgeValue,
+	openSettingDialog,
+	createAlert
 }
