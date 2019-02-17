@@ -1,7 +1,7 @@
 {
-  "title": "Object not selected",
-  "message": "Please select a resizable objects and run the plugin.",
-  "settingTitle": "Resize nudge size",
-  "labelSmallNudge": "Normal",
-  "labelBigNudge": "Greatly"
+  "ALERT_TITLE": "Object not selected",
+  "ALERT_MESSAGE": "Please select a resizable objects and run the plugin.",
+  "SETTING_TITLE": "Resize nudge size",
+  "SETTING_LABEL_NORMAL": "Normal",
+  "SETTING_LABEL_LARGER": "Larger"
 }

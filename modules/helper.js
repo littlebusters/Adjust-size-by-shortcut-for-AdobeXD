@@ -8,16 +8,17 @@ const getNudgeValue = async (size) => {
 	let nudgeValues = await readConfig();
 
 	switch (size) {
-		case 'small':
+		case 'normal':
 			return nudgeValues.normal;
-		case 'big':
-			return nudgeValues.greatly;
+		case 'larger':
+			return nudgeValues.larger;
 		default:
 			return nudgeValues.normal;
 	}
 }
 
 function createSettingDialog(defaultVal) {
+	console.log(defaultVal);
 	document.body.innerHTML = `
 <style>
     dialog {
@@ -54,15 +55,15 @@ function createSettingDialog(defaultVal) {
 </style>
 <dialog id="dialog">
 	<form id="form" method="dialog">
-		<h1 id="title">${uiLabel.settingTitle}</h1>
+		<h1 id="title">${uiLabel.SETTING_TITLE}</h1>
 		<div class="formgroup row">
 			<div class="row">
-				<label for="smallNudge">${uiLabel.labelSmallNudge}</label>
-				<input id="smallNudge" type="number" step="0.1" placeholder="0" value="${defaultVal.normal}" />
+				<label for="normalNudge">${uiLabel.SETTING_LABEL_NORMAL}</label>
+				<input id="normalNudge" type="number" step="0.1" placeholder="0" value="${defaultVal.normal}" />
 			</div>
 			<div class="row">
-				<label for="bigNudge">${uiLabel.labelBigNudge}</label>
-				<input id="bigNudge" type="number" step="1" placeholder="0" value="${defaultVal.greatly}" />
+				<label for="largerNudge">${uiLabel.SETTING_LABEL_LARGER}</label>
+				<input id="largerNudge" type="number" step="1" placeholder="0" value="${defaultVal.larger}" />
 			</div>
 		</div>
 		<footer>
@@ -75,8 +76,8 @@ function createSettingDialog(defaultVal) {
 `;
 	const dialog = dom('#dialog');
 	const form = dom('#form');
-	const smallNudge = dom('#smallNudge');
-	const bigNudge = dom('#bigNudge');
+	const normalNudge = dom('#normalNudge');
+	const largerNudge = dom('#largerNudge');
 	const cancel = dom('#cancel');
 	const ok = dom('#ok');
 
@@ -88,8 +89,8 @@ function createSettingDialog(defaultVal) {
 	// OK button event
 	const confirmedDialog = (e) => {
 		let config = {};
-		config.smallNudge = smallNudge.value;
-		config.bigNudge = bigNudge.value;
+		config.normalNudge = normalNudge.value;
+		config.largerNudge = largerNudge.value;
 		dialog.close(config);
 		e.preventDefault();
 	};
@@ -151,8 +152,8 @@ async function openSettingDialog() {
 		const result = await dialog.showModal();
 		if ('reasonCanceled' !== result) {
 			let config = {};
-			config.normal = (validateNum(result.smallNudge)) ? Math.abs(result.smallNudge - 0) : defaultVal.smallNudge;
-			config.greatly = (validateNum(result.bigNudge)) ? Math.abs(result.bigNudge - 0) : defaultVal.bigNudge;
+			config.normal = (validateNum(result.normalNudge)) ? Math.abs(result.normalNudge - 0) : defaultVal.normalNudge;
+			config.larger = (validateNum(result.largerNudge)) ? Math.abs(result.largerNudge - 0) : defaultVal.largerNudge;
 			await writeConfig(config);
 		} else {
 			console.log('Adjust size setting canceled.')
@@ -166,10 +167,16 @@ async function readConfig() {
 	let entry = await openFile();
 
 	if (entry) {
-		return JSON.parse(await entry.read());
+		let nudgeValues = JSON.parse(await entry.read());
+		if (!nudgeValues.hasOwnProperty('larger')) {
+			nudgeValues.larger = nudgeValues.greatly;
+			delete nudgeValues.greatly;
+			await writeConfig(nudgeValues);
+		}
+		return nudgeValues;
 	} else {
 		// Set and return default values if config.json is not found
-		let defaultVal = {"normal": 1, "greatly": 10};
+		let defaultVal = {"normal": 1, "larger": 10};
 		const pluginDataFolder = await fs.getDataFolder();
 		const buffer = await pluginDataFolder.createFile(configFile);
 		buffer.write(JSON.stringify(defaultVal));
@@ -199,15 +206,11 @@ async function openFile() {
 	const pluginDataFolder = await fs.getDataFolder();
 	const entries = await pluginDataFolder.getEntries();
 
-	// Seek a config.json
-	for (let i = 0; i < entries.length; i++) {
-		// console.log(entries[i].name);
-		if (configFile === entries[i].name) {
-			return await entries[i];
+	for (const entry of entries) {
+		if (configFile === entry.name) {
+			return entry;
 		}
 	}
-
-	return false;
 }
 
 function validateNum(val) {
